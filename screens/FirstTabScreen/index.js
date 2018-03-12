@@ -11,15 +11,36 @@ var config = {
     messagingSenderId: "482556730535"
   };
 firebase.initializeApp(config);
-firebase.database().ref('/users/' + 123).once('value').then(function(snapshot) {
-  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-  console.log(username);
-});
+
+
 export default class FirstTabScreen extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      loaded : false,
+      username: undefined,
+    };
+  }
+
+  fetchUserName = () => {
+    new Promise(() => {
+      firebase.database().ref('/users/' + 123).once('value').then(function(snapshot) {
+        const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        console.log(username);
+        return username;
+      }).then((username) => {
+        this.setState({ loaded: true, username: username });
+      });
+    })
+  }
+
+
   render() {
+    if(!this.state.loaded) this.fetchUserName();
     return (
       <View>
         <Text>FirstTabScreen</Text>
+        {this.state.loaded && <Text>{this.state.username}</Text>}
       </View>
     )
   }
