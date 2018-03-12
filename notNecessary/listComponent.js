@@ -4,29 +4,7 @@ import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
 import {connect} from 'react-redux';
 
 class ListComponent extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      isLoading: true
-    }
-    console.log('this.props',this.props);
-  }
-  componentDidMount(){
-    return fetch('https://facebook.github.io/react-native/movies.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        let ds = new ListView.DataSource({rowHasChanged: (r1,r2) => r1 !== r2});
-        this.setState({
-          isLoading: false,
-          dataSource: ds.cloneWithRows(responseJson.movies),
-        }, function(){
-          //do something with new state
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+
   render(){
     if(this.state.isLoading){return <Text>Жди! </Text>}
     return (

@@ -65,7 +65,7 @@ store.subscribe(() => {
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     BackHandler.addEventListener('hardwareBackPress', function() {
       return true;
     })
