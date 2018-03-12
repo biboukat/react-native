@@ -1,4 +1,4 @@
-package com.awesomeproject;
+package com.kovtun;
 
 import com.facebook.react.ReactActivity;
 import com.reactnativenavigation.controllers.SplashActivity;

@@ -1,4 +1,4 @@
-package com.awesomeproject;
+package com.kovtun;
 
 import android.app.Application;
 
