@@ -8,6 +8,7 @@
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8082'"
   },
   "dependencies": {
+    "babel-plugin-root-import": "^5.1.0",
     "firebase": "^4.11.0",
     "react": "16.0.0",
     "react-native": "0.50.3",
