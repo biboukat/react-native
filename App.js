@@ -1,32 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet, Alert,
-  Text, Image, TextInput, Button, TouchableHighlight, TouchableNativeFeedback,
-  TouchableOpacity, ScrollView,
-  View,
-  BackHandler,
-} from 'react-native';
-import { Provider } from 'react-redux';
-import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-import ListComponent from './notNecessary/listComponent';
-import reducer from './app/reducers/index.js'
-import Input from './app/components/input.js'
-import OutputText from './app/components/outputText.js'
-
+import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import { Provider } from 'react-redux';
+
+import configureStore from './store/configureStore';
 import { registerScreens } from './screens';
 
-registerScreens();
+export const store = configureStore();
+registerScreens(store, Provider);
 
 Navigation.startTabBasedApp({
   tabs: [
@@ -46,45 +27,3 @@ Navigation.startTabBasedApp({
     }
   ]
 });
-
-const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__})
-function configureStore(initialState) {
-  const enhancer = compose(
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
-    ),
-  );
-  return createStore(reducer, initialState, composeWithDevTools(enhancer))
-}
-const store = configureStore({})
-
-store.subscribe(() => {
-  console.log('subscribe', store.getState());
-})
-
-class App extends Component {
-  constructor(props) {
-    super(props)
-    BackHandler.addEventListener('hardwareBackPress', function() {
-      return true;
-    })
-  }
-  render() {
-    return (
-        <View style={styles.container}>
-          <Text>qwerty</Text>
-        </View>
-    );
-  }
-}
-
-export default class AppNew extends Component {
-  render () {
-    return(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    )
-  }
-};
