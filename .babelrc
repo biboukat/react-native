@@ -1,16 +1,9 @@
 {
   "presets": ["react-native"],
-
   "plugins": [
-    ["babel-plugin-root-import", [
-      {
-        "rootPathPrefix": "~",
-        "rootPathSuffix": "app"
-      },
-      {
-        "rootPathPrefix": "@",
-        "rootPathSuffix": "app"
-      },
-    ]]
-  ]
+    ["babel-plugin-root-import", {
+      "rootPathPrefix": "~",
+      "rootPathSuffix": "app",
+    }]
+  ],
 }
