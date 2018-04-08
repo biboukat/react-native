@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import inputText from './inputText';
+import auth from './auth';
 export default combineReducers({
-  inputText,
+  auth,
 })
