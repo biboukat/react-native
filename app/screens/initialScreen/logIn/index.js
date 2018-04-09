@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import styles from './styles';
-import { fetchUserName } from '~/dataBase';
+import { fetchUserName, addCreditalsToStore } from '~/dataBase';
 import { autorization } from '~/actions/auth';
 import { startTab } from '~/screens'
 
@@ -26,14 +26,10 @@ class LogIn extends Component{
   }
 
   login = () => {
-    console.log('tap');
     const { email, password } = this.state;
-    console.log('email', email);
     fetchUserName(email, password)
     .then((val) => {
       const users = val.val();
-      console.log(val);
-      console.log(users);
       if(!users) {
         this.setState({ showError: true, notification: 'Email hasn\'t registered yet'});
         setTimeout(() => {
@@ -53,7 +49,8 @@ class LogIn extends Component{
         }, 4000);
         return;
       }
-      this.props.autorization(user.email, user.password);
+      // this.props.autorization(user.email, user.password);
+      this.props.successAuthorization(user.email, user.password);
       startTab();
     })
     .catch((error) => console.error(error));
@@ -104,7 +101,6 @@ class LogIn extends Component{
 export default connect(
   null,
   dispatch => ({
-    autorization: bindActionCreators(autorization, dispatch),
-    bla: dispatch({type: 'bla'})
-  }),
+    successAuthorization: (uid, password) => dispatch({ type: 'SUCCESS_AUTHORIZATAION', uid, password })
+  })
 )(LogIn);

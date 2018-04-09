@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Button, View } from 'react-native';
-import styles from './styles';
+import { connect } from 'react-redux';
 
-export default class InitialComponent extends Component{
+import styles from './styles';
+import { trySaga } from '~/dataBase';
+
+class InitialComponent extends Component{
 
   static navigatorStyle = {
     navBarBackgroundColor: '#00716c',
@@ -20,6 +23,7 @@ export default class InitialComponent extends Component{
     backButtonHidden: false, // hide the back button altogether (optional)
   });
   }
+
   render() {
     return(
       <View style={styles.container}>
@@ -34,10 +38,17 @@ export default class InitialComponent extends Component{
           <Button
             title="Admin"
             color="#bba480"
-            onPress={() => {}}
+            onPress={this.props.tapAdmin}
           />
         </View>
       </View>
     )
   }
 }
+
+export default connect(
+  null,
+  dispatch => ({
+    tapAdmin: () => dispatch({type: 'TAP_ADMIN'}),
+  })
+)(InitialComponent);
