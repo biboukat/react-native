@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 import * as firebase from 'firebase';
+import { persistStore, createTransform } from 'redux-persist';
 
 import configureStore from '~/store/configureStore';
 import { registerScreens, startTab, startSingle } from '~/screens';
-// import initDB from '~/dataBase';
 
 export const store = configureStore();
-const state = store.getState();
+
 registerScreens(store, Provider);
 
 const config = {
@@ -24,10 +23,15 @@ const config = {
 firebase.initializeApp(config);
 
 
-const userLogged = state.auth.uid;
-
-if (userLogged) {
-  startTab();
-} else {
-  startSingle();
+export default function startApp() {
+  persistStore(store, null,
+    () => {
+      const state = store.getState();
+      if (state.auth.email) {
+        startTab();
+      } else {
+        startSingle();
+      }
+    }
+  );
 }

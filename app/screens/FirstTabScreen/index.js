@@ -8,8 +8,10 @@ class FirstTabScreen extends Component {
     return (
       <View>
         <Text>FirstTabScreen</Text>
-        <Text>{this.props.username}</Text>
+        <Text>{this.props.email}</Text>
         <Text>{this.props.password}</Text>
+        <Text>{this.props.fistName}</Text>
+        <Text>{this.props.lastName}</Text>
       </View>
     )
   }
@@ -17,7 +19,9 @@ class FirstTabScreen extends Component {
 
 export default connect(
   state => ({
-    username: state.auth.uid,
+    email: state.auth.email,
     password: state.auth.password,
+    fistName: state.auth.firstName,
+    lastName: state.auth.lastName,
   })
 )(FirstTabScreen);

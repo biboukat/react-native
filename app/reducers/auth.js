@@ -1,13 +1,16 @@
 export default function input(state = {}, action){
-  console.log(action.type);
   switch (action.type) {
     case 'ADD_CREDITALS_TO_STORE':
-      const { uid, password } = action;
+      const { user: { email, password, firstName, lastName } } = action;
       return {
         ...state,
-        uid,
+        email,
         password,
+        firstName,
+        lastName,
       };
+    case 'RESET_CACHE':
+      return {};
   }
   return state;
 }

@@ -50,7 +50,7 @@ class LogIn extends Component{
         return;
       }
       // this.props.autorization(user.email, user.password);
-      this.props.successAuthorization(user.email, user.password);
+      this.props.successAuthorization(user);
       startTab();
     })
     .catch((error) => console.error(error));
@@ -101,6 +101,6 @@ class LogIn extends Component{
 export default connect(
   null,
   dispatch => ({
-    successAuthorization: (uid, password) => dispatch({ type: 'SUCCESS_AUTHORIZATAION', uid, password })
+    successAuthorization: user => dispatch({ type: 'SUCCESS_AUTHORIZATAION', user })
   })
 )(LogIn);

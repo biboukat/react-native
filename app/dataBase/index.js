@@ -2,8 +2,9 @@ import * as firebase from 'firebase';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
 export function* addCreditalsToStore(action) {
-  const { uid, password } = action;
-  yield put({type: "ADD_CREDITALS_TO_STORE", uid, password});
+  const { user } = action;
+  console.log('user', user);
+  yield put({type: "ADD_CREDITALS_TO_STORE", user});
 }
 
 export function* watchActions() {
