@@ -4,6 +4,13 @@ import { connect } from 'react-redux';
 
 
 class FirstTabScreen extends Component {
+
+  static navigatorStyle = {
+    navBarBackgroundColor: '#00716c',
+    navBarTextColor: 'white',
+    navBarTranslucent: true,
+  };
+
   render() {
     return (
       <View>
