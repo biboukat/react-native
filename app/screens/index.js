@@ -5,11 +5,15 @@ import LogInScreen from './initialScreen/logIn';
 
 import FirstTabScreen from './FirstTabScreen';
 import SecondTabScreen from './SecondTabScreen';
+import addSpentMoney from './ThirdTabScreen';
+import changePriceScreen from './ThirdTabScreen/changePriceScreen';
 export function registerScreens(store, Provider) {
   Navigation.registerComponent('FirstTabScreen', () => FirstTabScreen, store, Provider);
   Navigation.registerComponent('LogInScreen', () => LogInScreen, store, Provider);
   Navigation.registerComponent('WelcomeScreen', () => WelcomeScreen, store, Provider);
   Navigation.registerComponent('SecondTabScreen', () => SecondTabScreen, store, Provider);
+  Navigation.registerComponent('addSpentMoney', () => addSpentMoney, store, Provider);
+  Navigation.registerComponent('changePriceScreen', () => changePriceScreen, store, Provider);
 }
 
 

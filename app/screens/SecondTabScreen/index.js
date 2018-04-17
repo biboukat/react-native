@@ -11,13 +11,33 @@ class SecondTabScreen extends Component {
     startSingle();
   }
 
+  addPrice = () => {
+    this.props.navigator.push({
+      screen: 'addSpentMoney',
+      title: 'Spent money',
+      animated: true,
+      animationType: 'slide-horizontal',
+      backButtonTitle: undefined,
+      backButtonHidden: false,
+    });
+  }
+
   render() {
     return (
-      <View>
+      <View
+        style={{ flexDirection: 'row', width: '100%', backgroundColor: 'cyan'}}
+      >
         <Text>SecondTabScreen</Text>
         <Button
           onPress={this.logOut}
           title="logOut"
+          color="#bba480"
+        />
+        <View style={{ width: 50 }} />
+        <Button
+          style={{ paddingLeft: 40 }}
+          onPress={this.addPrice}
+          title="Add price"
           color="#bba480"
         />
       </View>

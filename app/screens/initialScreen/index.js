@@ -15,13 +15,13 @@ class InitialComponent extends Component{
 
   goToLogIn = () => {
     this.props.navigator.push({
-    screen: 'LogInScreen', // unique ID registered with Navigation.registerScreen
-    title: 'LogIn', // navigation bar title of the pushed screen (optional)
-    animated: true, // does the push have transition animation or does it happen immediately (optional)
-    animationType: 'slide-horizontal', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
-    backButtonTitle: undefined, // override the back button title (optional)
-    backButtonHidden: false, // hide the back button altogether (optional)
-  });
+      screen: 'LogInScreen',
+      title: 'LogIn',
+      animated: true,
+      animationType: 'slide-horizontal',
+      backButtonTitle: undefined,
+      backButtonHidden: false,
+    });
   }
 
   render() {
